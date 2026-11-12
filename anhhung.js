@@ -1,158 +1,249 @@
+// =====================================================
+// ANH HUNG JAVASCRIPT - DAI CHIEN RONG GIA
+// Giữ công thức chỉ số từ bài tập gốc, bổ sung giao diện,
+// hiệu ứng tấn công/bị thương và âm thanh bằng Web Audio.
+// =====================================================
 
-var name = "Huỳnh Yến Trân";
-var MSSV = "31241023609";
+const $ = (id) => document.getElementById(id);
 
-document.write("Tôi tên là: " + name + " - MSSV: " + MSSV + " sẽ quyết tâm trở thành 1 anh hùng JS");
+let selectedClass = "warrior";
+let hero = {};
+let dragon = {};
+let soundOn = true;
+let audioContext = null;
+let battleOver = false;
 
-var LEVEL = 1;
-var XP = 0;
-var SKILLPOINT = 5;
+const classButtons = document.querySelectorAll(".class-btn");
 
-LEVEL++;
-XP = 150 * (LEVEL - 1) + 200;
-SKILLPOINT = SKILLPOINT + XP / 10;
+classButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        classButtons.forEach((item) => item.classList.remove("selected"));
+        button.classList.add("selected");
+        selectedClass = button.dataset.class;
+    });
+});
 
-document.write("<br>" + name + " sẽ là Anh Hùng Javascript. Cấp độ hiện tại của bạn là: " + LEVEL);
+$("soundBtn").addEventListener("click", () => {
+    soundOn = !soundOn;
+    $("soundBtn").textContent = soundOn ? "🔊 Âm thanh: Bật" : "🔇 Âm thanh: Tắt";
+    if (soundOn) playTone(520, 0.08, "sine");
+});
 
-var strength = 0.6 * SKILLPOINT + 0.1 * XP;
-var agility = 0.2 * SKILLPOINT + 0.2 * XP;
-var intel = 0.6 * SKILLPOINT + 10 * LEVEL;
+$("startBtn").addEventListener("click", startBattle);
+$("attackBtn").addEventListener("click", takeTurn);
+$("restartBtn").addEventListener("click", resetGame);
 
-document.write("<br>LEVEL UP! Chúc mừng bạn lên cấp!");
+function startBattle() {
+    const playerName = $("playerName").value.trim() || "Anh Hùng";
+    const LEVEL = 5;
+    let XP = 0;
+    let SKILLPOINT = 5;
 
-LEVEL = 3;
-XP = XP + 300;
+    // Công thức từ bài tập ban đầu
+    let levelForSetup = 1;
+    levelForSetup++;
+    XP = 150 * (levelForSetup - 1) + 200;
+    SKILLPOINT = SKILLPOINT + XP / 10;
 
-// Nhập tên người chơi
-var nhapTen = prompt("Hãy nhập tên bạn");
+    let strength = 0.6 * SKILLPOINT + 0.1 * XP;
+    let agility = 0.2 * SKILLPOINT + 0.2 * XP;
+    let intel = 0.6 * SKILLPOINT + 10 * levelForSetup;
 
-if (nhapTen == name) {
-    console.log("Chính xác! Bạn có trí nhớ rất tốt! intel +5!");
-    intel = intel + 5;
-} else {
-    console.log("Tệ thật! Tên chính mình mà không nhớ sao?! intel -5!");
-    intel = intel - 5;
+    // Cộng điểm theo lựa chọn phân cấp
+    if (selectedClass === "warrior") {
+        strength += 15;
+    } else if (selectedClass === "assassin") {
+        strength -= 10;
+        agility += 10;
+        intel += 5;
+    } else if (selectedClass === "hunter") {
+        strength -= 15;
+        intel += 15;
+    }
+
+    hero = {
+        name: playerName,
+        level: LEVEL,
+        className: selectedClass === "warrior" ? "Chiến Binh" :
+                   selectedClass === "assassin" ? "Sát Thủ" : "Thợ Săn",
+        strength,
+        agility,
+        intel,
+        maxHp: 105,
+        hp: 105
+    };
+
+    dragon = { maxHp: 600, hp: 600, strength: 100, agility: 15, intel: 80 };
+    battleOver = false;
+
+    $("introPanel").classList.add("hidden");
+    $("battlePanel").classList.remove("hidden");
+    $("heroName").textContent = hero.name;
+    $("heroClass").textContent = hero.className;
+    $("heroLevel").textContent = "CẤP " + hero.level;
+    $("strength").textContent = Math.round(hero.strength);
+    $("agility").textContent = Math.round(hero.agility);
+    $("intel").textContent = Math.round(hero.intel);
+    $("attackBtn").disabled = false;
+    $("attackBtn").textContent = "⚔️ TẤN CÔNG";
+    $("battleLog").className = "log";
+    updateBars();
+    logMessage("Trận chiến bắt đầu! " + hero.name + " đối đầu Hỏa Long Cổ Đại.", "good");
+    playTone(330, 0.16, "triangle");
 }
 
-// Chọn phân cấp
-var chonVai = prompt("Bạn muốn chọn phân cấp nào? a: Chiến Binh | b: Sát Thủ | c: Thợ Săn");
+function takeTurn() {
+    if (battleOver) return;
 
-var phancap = "";
+    // Anh hùng tấn công Rồng
+    $("hero").classList.remove("attack", "hurt");
+    void $("hero").offsetWidth;
+    $("hero").classList.add("attack");
 
-switch (chonVai) {
-    case "a":
-        phancap = "Chiến Binh";
-        strength = strength + 15;
-        intel = intel;
-        break;
-
-    case "b":
-        phancap = "Sát Thủ";
-        strength = strength - 10;
-        agility = agility + 10;
-        intel = intel + 5;
-        break;
-
-    case "c":
-        phancap = "Thợ Săn";
-        strength = strength - 15;
-        intel = intel + 15;
-        break;
-
-    default:
-        phancap = "Chưa chọn phân cấp hợp lệ";
-        break;
-}
-
-document.write("<br>Phân cấp của bạn là: " + phancap);
-
-document.write("<br>LEVEL UP! Chúc mừng bạn lên cấp!");
-
-LEVEL = 3;
-XP = XP + 300;
-
-// ========================================================
-// Trước khi vào trận chiến, cần xem lại các chỉ số của bạn
-// và xem xét các thông tin của đối thủ.
-// ========================================================
-
-LEVEL = 5; // Đảm bảo bạn sẽ ở cấp độ 5
-
-var health = LEVEL + 100; // Khi lượng máu <= 0 thì bạn sẽ chết
-
-console.log("Strength: " + strength);
-console.log("Agility: " + agility);
-console.log("Intel: " + intel);
-console.log("Health: " + health);
-
-// ========================================================
-// Rồng Già
-// Chậm chạp và yếu ớt hơn so với đồng loại, nhưng vẫn rất
-// nguy hiểm với khả năng phun lửa có thể gây sát thương chí
-// mạng rất cao.
-// ========================================================
-
-var dragonHealth = 600;
-var dragonStr = 100;
-var dragonAgi = 15;
-var dragonInt = 80;
-
-var gameContinue = true;
-
-while (gameContinue) {
-
-    // Anh hùng tấn công!
-    var heroHit = Math.random() * 100 > dragonAgi;
-
+    const heroHit = Math.random() * 100 > dragon.agility;
     if (heroHit) {
-        dragonHealth = dragonHealth - strength;
+        let damage = hero.strength;
+        const critical = Math.random() * 100 < hero.intel;
+        if (critical) damage *= 2;
 
-        alert("TRẢM LONG! Bạn gây sát thương " + strength + " điểm cho Rồng!");
+        dragon.hp = Math.max(0, dragon.hp - damage);
+        $("dragon").classList.add("hurt");
+        showDamage("dragon", Math.round(damage), critical);
+        playTone(critical ? 115 : 190, 0.18, "sawtooth");
+        logMessage(
+            (critical ? "💥 CHÍ MẠNG! " : "⚔️ TRẢM LONG! ") +
+            hero.name + " gây " + Math.round(damage) + " sát thương lên Rồng!",
+            "good"
+        );
+        updateBars();
 
-        var heroCritical = Math.random() * 100 < intel;
+        if (dragon.hp <= 0) {
+            endBattle(true);
+            return;
+        }
+    } else {
+        logMessage("💨 XÍ HỤT! Rồng đã né được đòn tấn công của bạn.", "bad");
+        playTone(260, 0.08, "sine");
+    }
 
-        if (heroCritical) {
-            dragonHealth = dragonHealth - strength * 2;
+    // Rồng phản công sau một nhịp ngắn
+    $("attackBtn").disabled = true;
+    setTimeout(() => {
+        if (battleOver) return;
 
-            alert("CHÍ MẠNG! Bạn gây sát thương chí mạng thêm " + strength * 2 + " điểm cho Rồng!");
+        $("dragon").classList.remove("attack", "hurt");
+        void $("dragon").offsetWidth;
+        $("dragon").classList.add("attack");
+
+        const dragonHit = Math.random() * 100 > hero.agility;
+        if (dragonHit) {
+            let damage = dragon.strength;
+            const critical = Math.random() * 100 < dragon.intel;
+            if (critical) damage *= 2;
+
+            hero.hp = Math.max(0, hero.hp - damage);
+            $("hero").classList.add("hurt");
+            showDamage("hero", Math.round(damage), critical);
+            playTone(critical ? 75 : 125, 0.25, "sawtooth");
+            logMessage(
+                (critical ? "🔥 CHÍ MẠNG! " : "🔥 HỎA CẦU! ") +
+                "Rồng gây " + Math.round(damage) + " sát thương lên bạn!",
+                "bad"
+            );
+            updateBars();
+
+            if (hero.hp <= 0) {
+                endBattle(false);
+                return;
+            }
+        } else {
+            logMessage("💨 Bạn né được đòn phun lửa của Rồng!", "good");
+            playTone(440, 0.08, "sine");
         }
 
+        $("attackBtn").disabled = false;
+    }, 520);
+}
+
+function updateBars() {
+    $("heroHp").style.width = (hero.hp / hero.maxHp * 100) + "%";
+    $("dragonHp").style.width = (dragon.hp / dragon.maxHp * 100) + "%";
+    $("heroHpText").textContent = hero.hp + " / " + hero.maxHp;
+    $("dragonHpText").textContent = dragon.hp + " / " + dragon.maxHp;
+}
+
+function showDamage(target, damage, critical) {
+    const element = target === "hero" ? $("hero") : $("dragon");
+    const popup = document.createElement("div");
+    popup.className = "damage-popup";
+    popup.textContent = (critical ? "CHÍ MẠNG -" : "-") + damage;
+    popup.style.cssText = `
+        position:absolute; left:50%; top:42%; transform:translate(-50%,0);
+        z-index:5; color:${target === "hero" ? "#ff776d" : "#ffe17a"};
+        font-size:${critical ? "27px" : "22px"}; font-weight:900;
+        text-shadow:0 3px 8px #000; pointer-events:none;
+        animation:damageFloat .85s ease forwards;
+    `;
+    element.appendChild(popup);
+    setTimeout(() => popup.remove(), 900);
+}
+
+function logMessage(message, type) {
+    const log = $("battleLog");
+    log.textContent = message;
+    log.className = "log " + (type || "");
+}
+
+function endBattle(won) {
+    battleOver = true;
+    $("attackBtn").disabled = true;
+    $("attackBtn").textContent = won ? "🏆 ĐÃ CHIẾN THẮNG" : "💀 BẠN ĐÃ GỤC NGÃ";
+    if (won) {
+        logMessage("🏆 CHIẾN THẮNG! " + hero.name + " đã hạ gục Rồng Già và trở thành huyền thoại!", "good");
+        playVictory();
     } else {
-        alert("XÍ HỤT! Rồng đã lượn tránh được đòn tấn công của Bạn!");
+        logMessage("💀 THẤT BẠI! Rồng Già đã chiến thắng. Hãy chơi lại và thử chiến thuật khác!", "bad");
+        playTone(90, 0.6, "sawtooth");
     }
+}
 
-    // Kiểm tra Rồng đã bị tiêu diệt chưa
-    if (dragonHealth <= 0) {
-        gameContinue = false;
-        alert("CHIẾN THẮNG!!! Chúc mừng bạn đã chiến thắng!!!");
-        break;
-    }
+function resetGame() {
+    $("battlePanel").classList.add("hidden");
+    $("introPanel").classList.remove("hidden");
+    $("hero").classList.remove("attack", "hurt");
+    $("dragon").classList.remove("attack", "hurt");
+    $("attackBtn").disabled = false;
+    battleOver = false;
+}
 
-    // Rồng tấn công!
-    var dragonHit = Math.random() * 100 > agility;
+function getAudioContext() {
+    if (!soundOn) return null;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!audioContext) audioContext = new AudioCtx();
+    if (audioContext.state === "suspended") audioContext.resume();
+    return audioContext;
+}
 
-    if (dragonHit) {
-        health = health - dragonStr;
+// Âm thanh tổng hợp, không cần tải file mp3 bên ngoài
+function playTone(frequency, duration, type) {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+    oscillator.type = type || "sine";
+    oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.16, ctx.currentTime + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+    oscillator.start();
+    oscillator.stop(ctx.currentTime + duration + 0.02);
+}
 
-        alert("HỎA CẦU! Rồng gây sát thương " + dragonStr + " điểm cho Bạn!");
-
-        var dragonCritical = Math.random() * 100 < dragonInt;
-
-        if (dragonCritical) {
-            health = health - dragonStr * 2;
-
-            alert("CHÍ MẠNG! Rồng gây sát thương chí mạng thêm " + dragonStr * 2 + " điểm cho Bạn!");
-        }
-
-    } else {
-        alert("XÍ HỤT! Bạn đã tránh được đòn tấn công từ Rồng!");
-    }
-
-    // Kiểm tra xem Anh Hùng có bị nướng không!
-    if (health <= 0) {
-        gameContinue = false;
-
-        alert("THẤT BẠI!!! Chúc mừng bạn đã có tên trên menu món tối của Rồng: Hiệp sĩ nướng lá lốt!");
-    }
-
+function playVictory() {
+    playTone(523, 0.14, "triangle");
+    setTimeout(() => playTone(659, 0.14, "triangle"), 150);
+    setTimeout(() => playTone(784, 0.3, "triangle"), 300);
 }
