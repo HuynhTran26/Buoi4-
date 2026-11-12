@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anh Hùng JavaScript - Đại Chiến Rồng Già</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="game">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">HÀNH TRÌNH ANH HÙNG</p>
+                <h1>ĐẠI CHIẾN <span>RỒNG GIÀ</span></h1>
+            </div>
+            <button id="soundBtn" class="sound-btn" type="button">🔊 Âm thanh: Bật</button>
+        </header>
+
+        <section class="intro panel" id="introPanel">
+            <div>
+                <p class="eyebrow">LỜI TIÊN TRI</p>
+                <h2>Vận mệnh đang chờ bạn!</h2>
+                <p>Hãy chọn một phân cấp, chuẩn bị sức mạnh và bước vào trận chiến với Rồng Già.</p>
+                <label for="playerName">Tên anh hùng</label>
+                <input id="playerName" type="text" value="Huỳnh Yến Trân" maxlength="24">
+                <div class="class-options">
+                    <button class="class-btn selected" data-class="warrior" type="button">
+                        <strong>⚔️ Chiến Binh</strong><small>+15 Sức mạnh</small>
+                    </button>
+                    <button class="class-btn" data-class="assassin" type="button">
+                        <strong>🗡️ Sát Thủ</strong><small>+10 Nhanh nhẹn, +5 Trí tuệ</small>
+                    </button>
+                    <button class="class-btn" data-class="hunter" type="button">
+                        <strong>🏹 Thợ Săn</strong><small>+15 Trí tuệ</small>
+                    </button>
+                </div>
+                <button id="startBtn" class="primary-btn" type="button">BẮT ĐẦU TRẬN CHIẾN</button>
+            </div>
+            <div class="intro-art" aria-label="Ảnh anh hùng">
+                <img src="images.jpg" alt="Hình ảnh anh hùng">
+            </div>
+        </section>
+
+        <section class="battle panel hidden" id="battlePanel">
+            <div class="arena">
+                <article class="fighter hero" id="hero">
+                    <div class="fighter-title"><span>🛡️ ANH HÙNG</span><b id="heroLevel">CẤP 5</b></div>
+                    <div class="portrait hero-portrait"><img src="images.jpg" alt="Anh hùng"></div>
+                    <h2 id="heroName">Huỳnh Yến Trân</h2>
+                    <p class="class-name" id="heroClass">Chiến Binh</p>
+                    <div class="health-label"><span>❤️ Sinh lực</span><b id="heroHpText">105 / 105</b></div>
+                    <div class="health-track"><div class="health-fill hero-health" id="heroHp"></div></div>
+                    <div class="stats">
+                        <span>⚔️ Sức mạnh <b id="strength">0</b></span>
+                        <span>💨 Nhanh nhẹn <b id="agility">0</b></span>
+                        <span>✨ Trí tuệ <b id="intel">0</b></span>
+                    </div>
+                </article>
+
+                <div class="versus">
+                    <div class="versus-mark">VS</div>
+                    <div class="battle-flash" id="battleFlash"></div>
+                </div>
+
+                <article class="fighter dragon" id="dragon">
+                    <div class="fighter-title"><span>🐉 KẺ THÙ</span><b>RỒNG GIÀ</b></div>
+                    <div class="dragon-art" id="dragonArt">🐉</div>
+                    <h2>Hỏa Long Cổ Đại</h2>
+                    <p class="class-name">Kẻ canh giữ ngọn núi lửa</p>
+                    <div class="health-label"><span>❤️ Sinh lực</span><b id="dragonHpText">600 / 600</b></div>
+                    <div class="health-track"><div class="health-fill dragon-health" id="dragonHp"></div></div>
+                    <div class="dragon-stats">
+                        <span>🔥 Sức mạnh <b>100</b></span>
+                        <span>💨 Nhanh nhẹn <b>15</b></span>
+                        <span>☄️ Chí mạng <b>80%</b></span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="battle-controls">
+                <button id="attackBtn" class="primary-btn attack-btn" type="button">⚔️ TẤN CÔNG</button>
+                <button id="restartBtn" class="secondary-btn" type="button">↻ Chơi lại</button>
+            </div>
+            <div class="log" id="battleLog" aria-live="polite">Trận chiến bắt đầu! Hãy tung đòn tấn công đầu tiên.</div>
+        </section>
+
+        <footer>ĐỒ ÁN THỰC HÀNH JAVASCRIPT · Chúc bạn trở thành huyền thoại!</footer>
+    </main>
+    <script src="anhhung.js"></script>
+</body>
+</html>
