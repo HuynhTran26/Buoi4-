@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,10 +7,12 @@
 
     <title>JavaScript Labs | Huỳnh Yến Trân</title>
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        /* GENERAL */
         * {
             margin: 0;
             padding: 0;
@@ -19,9 +22,13 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f4f7fc;
-            color: #27364b;
-            line-height: 1.6;
+            background: #f5f7fb;
+            color: #26364a;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         /* HEADER */
@@ -39,135 +46,167 @@
         .logo {
             font-size: 21px;
             font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
         .logo i {
+            color: #9bc8ff;
             margin-right: 8px;
-            color: #8fc4ff;
         }
 
         nav {
             display: flex;
-            gap: 25px;
+            gap: 28px;
             flex-wrap: wrap;
         }
 
         nav a {
             color: white;
-            text-decoration: none;
             font-size: 14px;
             transition: 0.3s;
         }
 
         nav a:hover {
-            color: #9fcaff;
+            color: #9bc8ff;
         }
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, #173f78, #3479c9);
+            background: linear-gradient(135deg, #173f78, #347bc9);
             color: white;
-            padding: 75px 8%;
             text-align: center;
+            padding: 85px 8%;
         }
 
-        .hero .tag {
+        .hero-label {
             display: inline-block;
-            padding: 6px 16px;
+            padding: 6px 17px;
             border: 1px solid rgba(255,255,255,0.5);
             border-radius: 30px;
-            font-size: 13px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: 38px;
+            font-size: 40px;
             margin-bottom: 15px;
         }
 
         .hero p {
-            max-width: 650px;
+            max-width: 680px;
             margin: auto;
-            color: #e1edff;
+            color: #e5efff;
             font-size: 16px;
         }
 
-        .hero-btn {
+        .hero-button {
             display: inline-block;
-            margin-top: 25px;
-            padding: 11px 24px;
+            margin-top: 28px;
+            padding: 12px 25px;
             background: white;
             color: #173f78;
-            text-decoration: none;
-            border-radius: 8px;
+            border-radius: 7px;
             font-weight: bold;
             transition: 0.3s;
         }
 
-        .hero-btn:hover {
-            background: #dceaff;
+        .hero-button:hover {
+            background: #e4efff;
             transform: translateY(-3px);
         }
 
-        /* MAIN */
+        /* MAIN CONTAINER */
         .container {
             width: 84%;
             max-width: 1100px;
-            margin: 45px auto;
+            margin: 50px auto;
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 55px;
+            scroll-margin-top: 25px;
         }
 
-        .section-title {
+        .section-heading {
+            color: #173f78;
             font-size: 25px;
-            color: #173f78;
-            margin-bottom: 10px;
-        }
-
-        .section-desc {
-            color: #718096;
-            margin-bottom: 22px;
-            font-size: 14px;
-        }
-
-        /* PROFILE */
-        .profile {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            box-shadow: 0 5px 20px rgba(31, 60, 100, 0.06);
-        }
-
-        .profile-icon {
-            width: 85px;
-            height: 85px;
-            min-width: 85px;
-            background: #e8f1ff;
-            color: #2868b7;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-        }
-
-        .profile h2 {
-            color: #173f78;
             margin-bottom: 8px;
         }
 
-        .profile p {
-            color: #64748b;
+        .section-description {
+            color: #77859a;
             font-size: 14px;
-            margin: 4px 0;
+            margin-bottom: 24px;
         }
 
-        /* KNOWLEDGE */
+        /* PERSONAL INFORMATION */
+        .profile-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 5px 20px rgba(30, 60, 100, 0.06);
+        }
+
+        .avatar {
+            width: 145px;
+            height: 145px;
+            min-width: 145px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e8f1ff;
+        }
+
+        .profile-content h3 {
+            color: #173f78;
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .profile-content p {
+            color: #63738a;
+            font-size: 14px;
+            margin: 6px 0;
+        }
+
+        .profile-content i {
+            color: #347bc9;
+            width: 22px;
+        }
+
+        .github-link {
+            color: #2868b7;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        /* INTRODUCTION */
+        .intro-card {
+            background: white;
+            padding: 28px 32px;
+            border-radius: 13px;
+            border-left: 5px solid #347bc9;
+            box-shadow: 0 4px 16px rgba(30, 60, 100, 0.05);
+        }
+
+        .intro-card p {
+            color: #586a80;
+            font-size: 15px;
+            text-align: justify;
+            margin-bottom: 13px;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* LEARNING CONTENT */
         .knowledge-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -178,7 +217,7 @@
             background: white;
             padding: 25px;
             border-radius: 13px;
-            box-shadow: 0 4px 15px rgba(31, 60, 100, 0.05);
+            box-shadow: 0 4px 16px rgba(30, 60, 100, 0.05);
             transition: 0.3s;
         }
 
@@ -186,15 +225,16 @@
             transform: translateY(-5px);
         }
 
-        .knowledge-card i {
-            font-size: 30px;
-            color: #3479c9;
-            margin-bottom: 13px;
+        .knowledge-card .icon {
+            font-size: 32px;
+            color: #347bc9;
+            margin-bottom: 12px;
         }
 
         .knowledge-card h3 {
             color: #173f78;
-            margin-bottom: 8px;
+            font-size: 18px;
+            margin-bottom: 9px;
         }
 
         .knowledge-card p {
@@ -202,64 +242,73 @@
             font-size: 14px;
         }
 
-        /* LABS */
+        /* LAB CARDS */
         .lab-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 22px;
         }
 
         .lab-card {
             background: white;
-            padding: 25px;
+            padding: 27px;
             border-radius: 14px;
-            border: 1px solid #e3eaf5;
-            box-shadow: 0 4px 15px rgba(31, 60, 100, 0.05);
+            border: 1px solid #e4eaf3;
+            box-shadow: 0 4px 16px rgba(30, 60, 100, 0.05);
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .lab-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 9px 22px rgba(31, 60, 100, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(30, 60, 100, 0.1);
         }
 
         .lab-number {
             display: inline-block;
-            background: #e8f1ff;
-            color: #2868b7;
+            width: fit-content;
             padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 13px;
+            background: #eaf2ff;
+            color: #2868b7;
+            border-radius: 5px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
         }
 
         .lab-card h3 {
             color: #173f78;
-            font-size: 21px;
+            font-size: 19px;
             margin-bottom: 10px;
         }
 
         .lab-card p {
             color: #718096;
             font-size: 14px;
-            min-height: 85px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
-        .lab-link {
+        .lab-button {
             display: inline-block;
-            margin-top: 18px;
-            padding: 9px 17px;
+            width: fit-content;
+            padding: 10px 17px;
             background: #2868b7;
             color: white;
-            text-decoration: none;
             border-radius: 7px;
             font-size: 14px;
+            font-weight: bold;
             transition: 0.3s;
         }
 
-        .lab-link:hover {
+        .lab-button:hover {
             background: #173f78;
+        }
+
+        .lab-button i {
+            margin-left: 6px;
         }
 
         /* FOOTER */
@@ -267,13 +316,18 @@
             background: #173f78;
             color: white;
             text-align: center;
-            padding: 25px 15px;
-            font-size: 14px;
+            padding: 28px 15px;
+        }
+
+        footer h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
         }
 
         footer p {
-            margin: 4px 0;
-            color: #dceaff;
+            color: #d6e5fa;
+            font-size: 13px;
+            margin: 3px 0;
         }
 
         /* RESPONSIVE */
@@ -285,11 +339,11 @@
 
             nav {
                 justify-content: center;
-                gap: 15px;
+                gap: 17px;
             }
 
             .hero {
-                padding: 55px 6%;
+                padding: 60px 6%;
             }
 
             .hero h1 {
@@ -300,14 +354,19 @@
                 width: 90%;
             }
 
-            .profile {
+            .profile-card {
                 flex-direction: column;
                 text-align: center;
+                padding: 28px 20px;
             }
 
             .knowledge-grid,
             .lab-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .intro-card {
+                padding: 22px;
             }
         }
     </style>
@@ -323,7 +382,8 @@
         </div>
 
         <nav>
-            <a href="#about">Giới thiệu</a>
+            <a href="#about">Thông tin cá nhân</a>
+            <a href="#introduction">Giới thiệu</a>
             <a href="#knowledge">Kiến thức</a>
             <a href="#labs">Danh sách Lab</a>
         </nav>
@@ -331,17 +391,17 @@
 
     <!-- HERO -->
     <section class="hero">
-        <span class="tag">MY LEARNING PORTFOLIO</span>
+        <span class="hero-label">MY LEARNING PORTFOLIO</span>
 
-        <h1>Hành trình học tập và thực hành</h1>
+        <h1>JavaScript Learning Journey</h1>
 
         <p>
-            Tổng hợp các bài thực hành trong quá trình học lập trình web,
-            từ kiến thức nền tảng đến vận dụng JavaScript và jQuery
-            để xây dựng các chức năng tương tác trên website.
+            Trang tổng hợp thông tin cá nhân và các bài thực hành
+            JavaScript trong quá trình học tập. Đây là nơi lưu trữ,
+            giới thiệu và kết nối đến nội dung của ba bài Lab.
         </p>
 
-        <a href="#labs" class="hero-btn">
+        <a href="#labs" class="hero-button">
             Khám phá các bài Lab
             <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -349,24 +409,37 @@
 
     <main class="container">
 
-        <!-- ABOUT -->
+        <!-- PERSONAL INFORMATION -->
         <section class="section" id="about">
-            <h2 class="section-title">
+
+            <h2 class="section-heading">
                 <i class="fa-solid fa-user"></i>
                 Thông tin cá nhân
             </h2>
 
-            <p class="section-desc">
-                Một vài thông tin về sinh viên thực hiện các bài thực hành.
+            <p class="section-description">
+                Thông tin sinh viên thực hiện các bài thực hành.
             </p>
 
-            <div class="profile">
-                <div class="profile-icon">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
+            <div class="profile-card">
 
-                <div>
-                    <h2>Huỳnh Yến Trân</h2>
+                <img src="images/avatar.jpg"
+                     alt="Ảnh đại diện Huỳnh Yến Trân"
+                     class="avatar">
+
+                <div class="profile-content">
+
+                    <h3>Huỳnh Yến Trân</h3>
+
+                    <p>
+                        <i class="fa-solid fa-id-card"></i>
+                        Mã số sinh viên: [BỔ SUNG MSSV]
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-users"></i>
+                        Lớp học phần: [BỔ SUNG LỚP HỌC PHẦN]
+                    </p>
 
                     <p>
                         <i class="fa-solid fa-building-columns"></i>
@@ -375,54 +448,114 @@
 
                     <p>
                         <i class="fa-solid fa-book-open"></i>
-                        Ngành Thương mại điện tử
+                        Ngành: Thương mại điện tử
                     </p>
 
                     <p>
-                        <i class="fa-solid fa-laptop-code"></i>
-                        Nội dung: Thực hành lập trình và phát triển website
+                        <i class="fa-brands fa-github"></i>
+                        GitHub:
+                        <a class="github-link"
+                           href="https://github.com/HuynhTran26"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            github.com/HuynhTran26
+                        </a>
                     </p>
+
                 </div>
             </div>
         </section>
 
-        <!-- KNOWLEDGE -->
-        <section class="section" id="knowledge">
-            <h2 class="section-title">
-                <i class="fa-solid fa-book-open"></i>
-                Nội dung học tập
+        <!-- INTRODUCTION -->
+        <section class="section" id="introduction">
+
+            <h2 class="section-heading">
+                <i class="fa-solid fa-circle-info"></i>
+                Giới thiệu bài thực hành
             </h2>
 
-            <p class="section-desc">
-                Những kiến thức và kỹ năng được vận dụng trong các bài thực hành.
+            <p class="section-description">
+                Mục tiêu và nội dung thực hiện ba bài Lab.
+            </p>
+
+            <div class="intro-card">
+
+                <p>
+                    Ba bài thực hành Lab 08, Lab 09 và Lab 10 được thực hiện
+                    nhằm củng cố kiến thức về JavaScript và tìm hiểu cách
+                    vận dụng ngôn ngữ này trong quá trình phát triển ứng dụng web.
+                    Nội dung các bài Lab được triển khai theo từng bước,
+                    từ nền tảng ngôn ngữ JavaScript đến thao tác với DOM,
+                    xử lý sự kiện và sử dụng thư viện jQuery.
+                </p>
+
+                <p>
+                    JavaScript đóng vai trò quan trọng trong việc tạo tính
+                    tương tác và xử lý các hành vi trên website. Ngôn ngữ này
+                    giúp trang web phản hồi với thao tác của người dùng,
+                    cập nhật nội dung và thực hiện các chức năng động.
+                    Thông qua ba bài thực hành, em có cơ hội rèn luyện kỹ năng
+                    lập trình và hiểu rõ hơn cách JavaScript được ứng dụng
+                    trong phát triển website.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- LEARNING CONTENT -->
+        <section class="section" id="knowledge">
+
+            <h2 class="section-heading">
+                <i class="fa-solid fa-book-open"></i>
+                Nội dung kiến thức
+            </h2>
+
+            <p class="section-description">
+                Các nhóm kiến thức được tìm hiểu và vận dụng trong quá trình
+                thực hiện bài tập.
             </p>
 
             <div class="knowledge-grid">
 
                 <div class="knowledge-card">
-                    <i class="fa-brands fa-html5"></i>
-                    <h3>HTML</h3>
+                    <div class="icon">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+
+                    <h3>JavaScript Foundations</h3>
+
                     <p>
-                        Xây dựng cấu trúc trang web bằng các thẻ HTML,
-                        tạo nội dung, liên kết, hình ảnh và biểu mẫu.
+                        Làm quen với nền tảng ngôn ngữ JavaScript,
+                        cú pháp, biến, kiểu dữ liệu, biểu thức,
+                        hàm và các cấu trúc lập trình cơ bản.
                     </p>
                 </div>
 
                 <div class="knowledge-card">
-                    <i class="fa-brands fa-css3-alt"></i>
-                    <h3>CSS</h3>
+                    <div class="icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+
+                    <h3>DOM and Events</h3>
+
                     <p>
-                        Định dạng giao diện website với màu sắc,
-                        font chữ, bố cục, hiệu ứng và thiết kế responsive.
+                        Tìm hiểu cách truy cập, thay đổi các phần tử
+                        HTML thông qua DOM và xử lý sự kiện phát sinh
+                        từ thao tác của người dùng.
                     </p>
                 </div>
 
                 <div class="knowledge-card">
-                    <i class="fa-brands fa-js"></i>
-                    <h3>JavaScript & jQuery</h3>
+                    <div class="icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+
+                    <h3>jQuery</h3>
+
                     <p>
-                        Xử lý sự kiện, thao tác DOM, tạo hiệu ứng,
-                        làm việc với dữ liệu và gửi yêu cầu GET.
+                        Sử dụng jQuery để lựa chọn phần tử,
+                        xử lý sự kiện, thao tác DOM, tạo hiệu ứng
+                        và thực hiện yêu cầu GET.
                     </p>
                 </div>
 
@@ -431,68 +564,77 @@
 
         <!-- LAB LIST -->
         <section class="section" id="labs">
-            <h2 class="section-title">
+
+            <h2 class="section-heading">
                 <i class="fa-solid fa-folder-open"></i>
                 Danh sách bài thực hành
             </h2>
 
-            <p class="section-desc">
-                Chọn từng Lab để xem các Exercise và mã nguồn tương ứng.
+            <p class="section-description">
+                Truy cập từng bài Lab để xem nội dung và các Exercise
+                tương ứng.
             </p>
 
             <div class="lab-grid">
 
                 <!-- LAB 08 -->
                 <div class="lab-card">
+
                     <span class="lab-number">LAB 08</span>
 
-                    <h3>JavaScript cơ bản</h3>
+                    <h3>JavaScript 1: Language Foundations</h3>
 
                     <p>
-                        Thực hành các kiến thức nền tảng của JavaScript,
-                        làm quen với cú pháp và cách viết chương trình.
+                        Tìm hiểu các kiến thức nền tảng của ngôn ngữ
+                        JavaScript, bao gồm cú pháp, biến, kiểu dữ liệu,
+                        biểu thức, hàm và các cấu trúc lập trình.
                     </p>
 
-                    <a href="LAB%208/" class="lab-link">
-                        Xem Lab 08
+                    <a href="LAB%208/" class="lab-button">
+                        Truy cập Lab 08
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
+
                 </div>
 
                 <!-- LAB 09 -->
                 <div class="lab-card">
+
                     <span class="lab-number">LAB 09</span>
 
-                    <h3>JavaScript nâng cao</h3>
+                    <h3>JavaScript 2: DOM and Events</h3>
 
                     <p>
-                        Tổng hợp các bài thực hành tiếp theo,
-                        vận dụng JavaScript để xử lý nội dung và tương tác
-                        trên trang web.
+                        Thực hành thao tác với Document Object Model (DOM),
+                        truy cập và thay đổi nội dung HTML,
+                        đồng thời xử lý các sự kiện trên trang web.
                     </p>
 
-                    <a href="LAB%209/" class="lab-link">
-                        Xem Lab 09
+                    <a href="LAB%209/" class="lab-button">
+                        Truy cập Lab 09
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
+
                 </div>
 
                 <!-- LAB 10 -->
                 <div class="lab-card">
+
                     <span class="lab-number">LAB 10</span>
 
-                    <h3>jQuery</h3>
+                    <h3>JavaScript 3: jQuery</h3>
 
                     <p>
-                        Thực hành jQuery với bộ chọn, sự kiện,
-                        thao tác DOM, hiệu ứng chuyển động và xử lý
-                        yêu cầu GET.
+                        Làm quen với thư viện jQuery thông qua bộ chọn,
+                        sự kiện, thao tác DOM, hiệu ứng chuyển động
+                        và xử lý yêu cầu GET.
                     </p>
 
-                    <a href="LAB%2010/" class="lab-link">
-                        Xem Lab 10
+                    <a href="LAB%2010/" class="lab-button">
+                        Truy cập Lab 10
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
+
                 </div>
 
             </div>
@@ -502,8 +644,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <p><strong>HUỲNH YẾN TRÂN</strong></p>
-        <p>JavaScript Labs | Learning Portfolio</p>
+        <h3>HUỲNH YẾN TRÂN</h3>
+
+        <p>JavaScript Learning Portfolio</p>
+
+        <p>Trường Đại học Kinh tế TP. Hồ Chí Minh (UEH)</p>
+
         <p>© 2026 - All Rights Reserved</p>
     </footer>
 
