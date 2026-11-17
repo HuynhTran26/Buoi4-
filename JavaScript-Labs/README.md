@@ -86,7 +86,7 @@ Làm quen với thư viện jQuery và ứng dụng trong phát triển website,
 ## 5. GitHub Repository và GitHub Pages
 
 - **GitHub Repository:** https://github.com/HuynhTran26/Buoi4-
-- **GitHub Pages:** https://huynhtran26.github.io/Buoi4-/JavaScript-Labs/
+- **GitHub Pages:** https://github.com/HuynhTran26/Buoi4-/deployments/github-pages
 
 GitHub Pages được sử dụng để triển khai website, giúp giảng viên có thể xem giao diện và truy cập các bài thực hành trực tiếp trên trình duyệt.
 
@@ -94,7 +94,7 @@ GitHub Pages được sử dụng để triển khai website, giúp giảng viê
 
 **Cách 1: Truy cập thông qua GitHub Pages**
 
-1. Mở đường dẫn: https://huynhtran26.github.io/Buoi4-/JavaScript-Labs/
+1. Mở đường dẫn: https://github.com/HuynhTran26/Buoi4-/deployments/github-pages
 2. Tại trang chủ, tìm phần giới thiệu các bài Lab.
 3. Chọn LAB 08, LAB 09 hoặc LAB 10 để xem nội dung tương ứng.
 4. Thực hiện kiểm tra giao diện và các chức năng của từng bài thực hành.
