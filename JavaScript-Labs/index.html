@@ -1,1 +1,371 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang cá nhân - Huỳnh Yến Trân</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6fc;
+            color: #26344a;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: #164b9b;
+            color: white;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            font-size: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #bcd7ff;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 84%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        /* PROFILE */
+        .profile {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .profile img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e3edff;
+        }
+
+        .profile h1 {
+            color: #164b9b;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .profile p {
+            margin: 5px 0;
+            color: #58677c;
+        }
+
+        .social {
+            margin-top: 15px;
+        }
+
+        .social a {
+            display: inline-block;
+            color: #164b9b;
+            text-decoration: none;
+            margin-right: 18px;
+        }
+
+        /* SECTION */
+        .section {
+            margin-top: 38px;
+        }
+
+        .section-title {
+            color: #164b9b;
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        /* LEARNING */
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .learning-card {
+            background: white;
+            padding: 24px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .learning-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .learning-card i {
+            font-size: 30px;
+            color: #2767c5;
+            margin-bottom: 12px;
+        }
+
+        .learning-card h3 {
+            color: #164b9b;
+            margin-bottom: 8px;
+        }
+
+        .learning-card p {
+            color: #65748a;
+            font-size: 14px;
+        }
+
+        /* LAB */
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .lab-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 4px solid #2767c5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lab-card h3 {
+            color: #164b9b;
+            margin-bottom: 10px;
+        }
+
+        .lab-card p {
+            font-size: 14px;
+            color: #65748a;
+            min-height: 65px;
+        }
+
+        .lab-card a {
+            display: inline-block;
+            margin-top: 15px;
+            background: #2767c5;
+            color: white;
+            text-decoration: none;
+            padding: 9px 17px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .lab-card a:hover {
+            background: #164b9b;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 50px;
+            background: #164b9b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .learning-grid,
+            .lab-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h2><i class="fa-solid fa-graduation-cap"></i> MY LEARNING</h2>
+
+        <nav>
+            <a href="#about">Giới thiệu</a>
+            <a href="#learning">Nội dung học</a>
+            <a href="#labs">Các bài Lab</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- PERSONAL INFORMATION -->
+        <section class="profile" id="about">
+
+            <img src="imgs/avatar.jpg" alt="Ảnh đại diện Huỳnh Yến Trân">
+
+            <div>
+                <h1>Huỳnh Yến Trân</h1>
+                <p><i class="fa-solid fa-building-columns"></i>
+                    Trường Đại học Kinh tế TP. Hồ Chí Minh (UEH)
+                </p>
+                <p><i class="fa-solid fa-book-open"></i>
+                    Ngành: Thương mại điện tử
+                </p>
+                <p><i class="fa-solid fa-user-graduate"></i>
+                    Sinh viên năm 2
+                </p>
+                <p>
+                    Đây là trang cá nhân tổng hợp những kiến thức và bài thực hành
+                    em đã học trong môn học. Trang web giúp lưu trữ và truy cập
+                    nhanh các bài Lab trong quá trình học tập.
+                </p>
+
+                <div class="social">
+                    <a href="https://www.facebook.com/yentran3032006"
+                        target="_blank">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                    <a href="mailto:">
+                        <i class="fa-solid fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNING CONTENT -->
+        <section class="section" id="learning">
+            <h2 class="section-title">
+                <i class="fa-solid fa-book"></i> Nội dung đã học
+            </h2>
+
+            <div class="learning-grid">
+
+                <div class="learning-card">
+                    <i class="fa-brands fa-html5"></i>
+                    <h3>HTML</h3>
+                    <p>
+                        Tìm hiểu cấu trúc trang web, các thẻ HTML,
+                        liên kết, hình ảnh, danh sách, bảng và biểu mẫu.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <h3>CSS</h3>
+                    <p>
+                        Học cách định dạng giao diện, màu sắc, font chữ,
+                        bố cục, khoảng cách và thiết kế trang web responsive.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <i class="fa-brands fa-js"></i>
+                    <h3>JavaScript & jQuery</h3>
+                    <p>
+                        Làm quen với biến, hàm, mảng, DOM, sự kiện,
+                        hiệu ứng chuyển động và xử lý dữ liệu.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LAB LIST -->
+        <section class="section" id="labs">
+            <h2 class="section-title">
+                <i class="fa-solid fa-folder-open"></i> Danh sách bài Lab
+            </h2>
+
+            <div class="lab-grid">
+
+                <div class="lab-card">
+                    <h3><i class="fa-solid fa-code"></i> Lab 08</h3>
+                    <p>
+                        Thực hành JavaScript cơ bản: cách nhúng JavaScript,
+                        biến, chuỗi, ngày tháng, mảng, hàm và đối tượng.
+                    </p>
+                    <a href="Lab08/lab08-walkthrough02.html">
+                        Xem bài Lab <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="lab-card">
+                    <h3><i class="fa-solid fa-file-circle-check"></i> Lab 09</h3>
+                    <p>
+                        Thực hành xử lý biểu mẫu, các sự kiện focus,
+                        blur và kiểm tra dữ liệu nhập từ người dùng.
+                    </p>
+                    <a href="Lab09/">
+                        Xem bài Lab <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="lab-card">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Lab 10</h3>
+                    <p>
+                        Tìm hiểu jQuery, bộ chọn, sự kiện, thao tác DOM,
+                        hiệu ứng và gửi yêu cầu GET.
+                    </p>
+                    <a href="Lab10/lab10-walkthrough01.html">
+                        Xem bài Lab <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Huỳnh Yến Trân | Trang cá nhân học tập</p>
+        <p>Learning and practicing web development</p>
+    </footer>
+
+</body>
+</html>
+
